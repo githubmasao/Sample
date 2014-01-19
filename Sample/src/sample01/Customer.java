@@ -29,24 +29,7 @@ public class Customer {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
             
-            // 一行毎に金額を計算
-            switch( each.getMovie().getPriceCode() ) {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if( each.getDaysRented() > 2 ) {
-                        thisAmount += ( each.getDaysRented() - 2 ) * 1.5;
-                    }
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDRENS:
-                    thisAmount += 1.5;
-                    if( each.getDaysRented() > 3 ) {
-                        thisAmount += ( each.getDaysRented() -3 ) * 1.5;
-                    }
-                    break;
-            }
+            thisAmount = amountFor(thisAmount, each);
             
             // レンタルポイントを加算
             frequentRenterPoints++;
@@ -66,5 +49,28 @@ public class Customer {
         result += "You earned " + String.valueOf( frequentRenterPoints ) + " frequent renter points";
         
         return result;
+    }
+
+    private double amountFor( Rental each) {
+        double thisAmount = 0;
+        // 一行毎に金額を計算
+        switch( each.getMovie().getPriceCode() ) {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if( each.getDaysRented() > 2 ) {
+                    thisAmount += ( each.getDaysRented() - 2 ) * 1.5;
+                }
+                break;
+            case Movie.NEW_RELEASE:
+                thisAmount += each.getDaysRented() * 3;
+                break;
+            case Movie.CHILDRENS:
+                thisAmount += 1.5;
+                if( each.getDaysRented() > 3 ) {
+                    thisAmount += ( each.getDaysRented() -3 ) * 1.5;
+                }
+                break;
+        }
+        return thisAmount;
     }
 }
