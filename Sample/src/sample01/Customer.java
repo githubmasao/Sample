@@ -1,4 +1,4 @@
-package sample;
+package sample01;
 
 import java.util.Enumeration;
 import java.util.Vector;

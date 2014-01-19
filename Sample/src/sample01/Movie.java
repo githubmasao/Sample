@@ -1,4 +1,4 @@
-package sample;
+package sample01;
 
 // Movie(映画) は単なるデータ保持用クラス
 public class Movie {

@@ -1,4 +1,4 @@
-package sample;
+package sample01;
 
 // Rental(レンタル) クラスによって顧客がビデオを借りることが表現されます。
 public class Rental {
