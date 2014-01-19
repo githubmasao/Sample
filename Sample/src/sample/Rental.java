@@ -1,3 +1,5 @@
+package sample;
+
 // Rental(レンタル) クラスによって顧客がビデオを借りることが表現されます。
 public class Rental {
     private Movie _movie;
