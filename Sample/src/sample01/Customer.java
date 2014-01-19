@@ -21,35 +21,39 @@ public class Customer {
     }
     
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
         Enumeration rentals = _rentals.elements();
         String result = "Rental Record for " + getName() + "_n";
         while( rentals.hasMoreElements() ) {
-            double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-            
-            // レンタルポイントを加算
-            frequentRenterPoints++;
-            
-            // 新作を二日以上借りた場合はボーナスポイント
-            if( (each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1 ) {
-                frequentRenterPoints++;
-            }
-            
             // この貸し出しに関する数値の表示
             result += "_t" + each.getMovie().getTitle() + "_t" + String.valueOf( each.getCharge() ) + "_t";
-            totalAmount += each.getCharge();
         }
         
         // フッタ部分の追加
-        result += "Amount owed is " + String.valueOf( totalAmount ) + "_n";
-        result += "You earned " + String.valueOf( frequentRenterPoints ) + " frequent renter points";
+        result += "Amount owed is " + String.valueOf( getTotalAmount() ) + "_n";
+        result += "You earned " + String.valueOf( getTotalFrequentRenterPoints() ) + " frequent renter points";
         
         return result;
     }
 
-    private double amountFor( Rental aRental) {
-        return aRental.getCharge();
+    public double getTotalAmount() {
+        double result = 0;
+        
+        Enumeration rentals = _rentals.elements();
+        while( rentals.hasMoreElements() ) {
+            Rental each = (Rental) rentals.nextElement();
+            result += each.getCharge();
+        }
+        return result;
+    }
+    
+    public int getTotalFrequentRenterPoints() {
+        int result = 0;
+        Enumeration rentals = _rentals.elements();
+        while( rentals.hasMoreElements() ) {
+            Rental each = (Rental) rentals.nextElement();
+            result = each.getFrequentRenterPoints();
+        }
+        return result;
     }
 }
