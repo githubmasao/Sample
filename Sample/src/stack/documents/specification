@@ -1,0 +1,18 @@
+・boolean isEmpty()
+    スタックが空の場合 true
+    上記以外の場合 false
+
+・int size()
+    スタックのサイズを取得する。
+
+・void push(int value)
+    引数の値をスタックの一番上に積む。
+
+・void pop()
+    スタック一番上の値を取り除く。
+    スタックが空の場合 java.util.EmptyStackException が発生する。
+
+・int top()
+    スタックの一番上の値を取得する。
+    スタックが空の場合 java.util.EmptyStackException が発生する。
+    
